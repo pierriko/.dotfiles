@@ -1,0 +1,16 @@
+import os
+import readline
+histfile = os.path.join(os.path.expanduser("~"), ".pyhistory")
+try:
+    readline.read_history_file(histfile)
+except IOError:
+    pass
+
+import rlcompleter
+readline.parse_and_bind("tab: complete")
+readline.parse_and_bind("ctrl-space: complete")
+
+import atexit
+atexit.register(readline.write_history_file, histfile)
+del os, histfile, readline, rlcompleter
+
