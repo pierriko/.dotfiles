@@ -14,7 +14,7 @@ export PATH=$PATH:$HOME/openrobots/sbin:$HOME/openrobots/bin
 
 #### setup devel
 export PKG_CONFIG_PATH=$HOME/devel/lib/pkgconfig:$PKG_CONFIG_PATH
-export PYTHONPATH=$PYTHONPATH:$HOME/devel/lib/python3/dist-packages
+export PYTHONPATH=$PYTHONPATH:$HOME/devel/lib/python3.3/dist-packages
 export PATH=$PATH:$HOME/devel/bin:$HOME/devel/usr/bin
 #### end setup devel
 
@@ -58,11 +58,13 @@ alias vialiases="vim ~/.bash_aliases"
 alias backupdebs="cp -vu /var/cache/apt/archives/*.deb ~/backup/debs/"
 # rsync dotfiles for git push
 alias dotsync="rsync -av ~/.bash_aliases ~/.gitconfig ~/.inputrc ~/.pyrc ~/.dotfiles/"
-
+# pdf to img
+alias pdf2img="convert -density 600 -scale 4000x4000"
 
 # build MORSE and install in ~/devel
 alias cmorse="(cd ~/work/morse/ && rm -rf build && mkdir build && cd build && \
     cmake -DCMAKE_INSTALL_PREFIX=$HOME/devel -DPYMORSE_SUPPORT=ON \
+    -DPYTHON_EXECUTABLE=~/devel/bin/python3.3 \
     -DBUILD_POCOLIBS_SUPPORT=ON -DBUILD_ROS_SUPPORT=ON .. && make install)"
 
 # Colorize MORSE :-)
