@@ -38,8 +38,8 @@ sudo apt-get update
 sudo apt-get install \
     ros-groovy-desktop-full ros-fuerte-desktop-full ros-hydro-ros-comm \
     python-rosinstall git-svn python3-dev python3-yaml libpcap-dev libxp-dev \
-    texinfo bwidget libgsl0-dev glpk libgts-dev libftdi-dev libeigen2-dev \
-    gnome-panel curl libgl1-mesa-dri libgl1-mesa-glx libc6 xclip traceroute \
+    pax texinfo bwidget libgsl0-dev glpk libgts-dev libftdi-dev libeigen2-dev \
+    gnome-panel curl libgl1-mesa-dri libc6 xclip traceroute \
     nmap recordmydesktop vlc jockey-common inkscape nautilus-open-terminal zsh \
     ruby-dev vim-nox python-fontforge \
     ros-fuerte-orocos-toolchain ros-fuerte-rtt-* \
@@ -88,7 +88,7 @@ make install
 #cd blender-svn && export PS1="$ " && python scons/scons.py -j 2
 
 # other stuff
-#sudo apt-get install nvidia-experimental-310-dev
+#sudo apt-get install libgl1-mesa-glx nvidia-experimental-310-dev libc6:i386
 
 #echo "Setup Flash for Firefox http://get.adobe.com/flashplayer/"
 #xdg-open "apt:adobe-flashplugin?channel=$(lsb_release -cs)-partner"
