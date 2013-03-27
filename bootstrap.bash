@@ -39,11 +39,12 @@ sudo apt-get install \
     ros-groovy-desktop-full ros-fuerte-desktop-full ros-hydro-ros-comm \
     python-rosinstall git-svn python3-dev python3-yaml libpcap-dev libxp-dev \
     pax texinfo bwidget libgsl0-dev glpk libgts-dev libftdi-dev libeigen2-dev \
-    gnome-panel curl libgl1-mesa-dri libc6 xclip traceroute flex bison \
+    gnome-panel curl libgl1-mesa-dri libc6 xclip traceroute flex bison rubber \
     nmap recordmydesktop vlc jockey-common inkscape nautilus-open-terminal zsh \
-    ruby-dev vim-nox python-fontforge libflann-dev cmake-curses-gui \
+    ruby-dev vim-nox python-fontforge libflann-dev cmake-curses-gui git-cvs \
     ros-fuerte-orocos-toolchain ros-fuerte-rtt-* \
-    ros-groovy-octomap* ros-fuerte-octo*
+    ros-groovy-octomap* ros-fuerte-octo* \
+    openjdk-7-jdk libdc1394-22-dev libraw1394-dev
 
 sudo rosdep init
 rosdep update
