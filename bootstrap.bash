@@ -39,9 +39,9 @@ sudo apt-get install \
     ros-groovy-desktop-full ros-fuerte-desktop-full ros-hydro-ros-comm \
     python-rosinstall git-svn python3-dev python3-yaml libpcap-dev libxp-dev \
     pax texinfo bwidget libgsl0-dev glpk libgts-dev libftdi-dev libeigen2-dev \
-    gnome-panel curl libgl1-mesa-dri libc6 xclip traceroute \
+    gnome-panel curl libgl1-mesa-dri libc6 xclip traceroute flex bison \
     nmap recordmydesktop vlc jockey-common inkscape nautilus-open-terminal zsh \
-    ruby-dev vim-nox python-fontforge \
+    ruby-dev vim-nox python-fontforge libflann-dev cmake-curses-gui \
     ros-fuerte-orocos-toolchain ros-fuerte-rtt-* \
     ros-groovy-octomap* ros-fuerte-octo*
 
@@ -52,34 +52,57 @@ echo "Setup ViM"
 git clone git://github.com/pierriko/.vim.git ~/.vim
 ~/.vim/.install.bash
 
-cd ~/work/
-[[ -d morse ]] && echo "MORSE already cloned" && exit 1
+[[ -d ~/work/morse ]] && echo "MORSE already cloned" && exit 1
 
 echo "Get Python 3.3 and Blender 2.6x"
+cd ~/tmp
 
-(wget http://python.org/ftp/python/3.3.0/Python-3.3.0.tar.bz2;
+(wget -q http://python.org/ftp/python/3.3.0/Python-3.3.0.tar.bz2;
 tar jxf Python-3.3.0.tar.bz2) & pypid=$!
+
+(wget -q http://pyyaml.org/download/pyyaml/PyYAML-3.10.tar.gz;
+tar zxf PyYAML-3.10.tar.gz) & pyyamlpid=$!
 
 [[ -z "$(uname -p | grep 64)" ]] && arch="i686" || arch="x86_64"
 
 # get 2.65 (Python 3.3)
 BLENDER="blender-2.65a-linux-glibc211-$arch"
 (wget -q http://download.blender.org/release/Blender2.65/${BLENDER}.tar.bz2;
-tar jxf ${BLENDER}.tar.bz2) &
+cd ~/work && tar jxf ~/tmp/${BLENDER}.tar.bz2) &
 
 # get 2.64 (Python 3.2)
 BLENDER="blender-2.64a-linux-glibc27-$arch"
 (wget -q http://download.blender.org/release/Blender2.64/${BLENDER}.tar.bz2;
-tar jxf ${BLENDER}.tar.bz2) &
+cd ~/work && tar jxf ~/tmp/${BLENDER}.tar.bz2) &
 
 echo "Get MORSE"
+cd ~/work
 git clone git://trac.laas.fr/robots/morse
 
 echo "Install Python 3.3 in ~/devel"
 wait $pypid
-cd Python-3.3.0/
+cd ~/tmp/Python-3.3.0/
 ./configure prefix=${HOME}/devel
 make install
+
+#
+# MORSE - ROS stuff
+#
+
+echo "Install PyYAML 3.10 with Python 3.3 in ~/devel"
+wait $pyyamlpid
+cd ~/tmp/PyYAML-3.10/
+~/devel/bin/python3.3 setup.py install
+
+cd ~/tmp
+
+(wget -q http://python-distribute.org/distribute_setup.py;
+~/devel/bin/python3.3 distribute_setup.py) &
+
+git clone git://github.com/ros/rospkg.git
+cd rospkg
+~/devel/bin/python3.3 setup.py install
+
 
 #git clone git://github.com/OctoMap/octomap.git
 #git clone git://github.com/OSGeo/gdal.git
