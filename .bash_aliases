@@ -60,6 +60,12 @@ alias backupdebs="cp -vu /var/cache/apt/archives/*.deb ~/backup/debs/"
 alias dotsync="rsync -av ~/.bash_aliases ~/.gitconfig ~/.inputrc ~/.pyrc ~/.dotfiles/"
 # pdf to img
 alias pdf2img="convert -density 600 -scale 4000x4000"
+# VLC play webcam with v4l2
+alias camview="vlc v4l2:///dev/video0"
+# video encoding
+videnc() {
+    avconv -i $1 -s hd720 -b 5000k -an $1.avi
+}
 
 # build MORSE and install in ~/devel
 alias cmorse="(cd ~/work/morse/ && rm -rf build && mkdir build && cd build && \

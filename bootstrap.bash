@@ -7,6 +7,7 @@ usermod -s /bin/bash $(whoami)
 DOTFILES=".bash_aliases .gitconfig .inputrc .pyrc"
 
 echo "Backup dotfiles: $DOTFILES"
+mkdir -p ~/backup
 DATE_BAK=$(date +%s)
 for dotfile in $DOTFILES; do
     [[ -f ~/${dotfile} ]] && mv ~/${dotfile} ~/backup/bak.${DATE_BAK}${dotfile}
@@ -20,7 +21,7 @@ echo "Done!"
 
 cd
 echo "Make home folders"
-mkdir work devel openrobots sandbox backup tmp
+mkdir work devel openrobots sandbox tmp
 
 [[ "$?" != "0" ]] && echo "Looks like you're already setup" && exit 1
 
@@ -121,4 +122,8 @@ cd rospkg
 #tar xf install_flash_player_11_linux.x86_64.tar.gz libflashplayer.so
 #mkdir -p ~/.mozilla/plugins/
 #mv libflashplayer.so ~/.mozilla/plugins/
+
+# install dvd css
+#sudo apt-get install libdvdnav4 libdvdread4
+#sudo /usr/share/doc/libdvdread4/install-css.sh
 
