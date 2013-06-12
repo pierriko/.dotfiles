@@ -90,6 +90,8 @@ alias blender=$MORSE_BLENDER
 
 export MORSE_RESOURCE_PATH=${HOME}/work/action/morse-action
 
+# for FindGDAL.cmake
+export GDAL_ROOT=$HOME/devel
 
 # ROS setup
 #source ~/work/ros-addons/setup.bash
