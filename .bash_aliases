@@ -7,7 +7,7 @@
 #### robotpkg setup
 export ROBOTPKG_BASE=$HOME/openrobots
 export PKG_CONFIG_PATH=$HOME/openrobots/lib/pkgconfig:$PKG_CONFIG_PATH
-export PYTHONPATH=$PYTHONPATH:$HOME/openrobots/lib/python2.7/site-packages
+export PYTHONPATH=$PYTHONPATH:$HOME/openrobots/lib/python2.7/site-packages:$HOME/openrobots/lib/python3.3/site-packages
 export PATH=$PATH:$HOME/openrobots/sbin:$HOME/openrobots/bin
 #### end robotpkg setup
 
@@ -15,7 +15,8 @@ export PATH=$PATH:$HOME/openrobots/sbin:$HOME/openrobots/bin
 #### setup devel
 export PKG_CONFIG_PATH=$HOME/devel/lib/pkgconfig:$PKG_CONFIG_PATH
 export PYTHONPATH=$PYTHONPATH:$HOME/devel/lib/python3.3/dist-packages
-export PATH=$PATH:$HOME/devel/bin:$HOME/devel/usr/bin
+export PATH=$HOME/devel/bin:$HOME/devel/usr/bin:$PATH
+#export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/devel/lib
 #### end setup devel
 
 # workaround HRI-SIM module "mocap" conflicts with another in Blender
@@ -67,17 +68,24 @@ videnc() {
     avconv -i $1 -s hd720 -b 5000k -an $1.avi
 }
 
+# android debug tool
+alias adb="~/sandbox/android-sdk-linux/platform-tools/adb"
+# boost quick compil
+alias cboost="c++ -I/usr/include/boost"
+
+
+
 # build MORSE and install in ~/devel
 alias cmorse="(cd ~/work/morse/ && rm -rf build && mkdir build && cd build && \
     cmake -DCMAKE_INSTALL_PREFIX=$HOME/devel -DPYMORSE_SUPPORT=ON \
-    -DPYTHON_EXECUTABLE=~/devel/bin/python3.3 \
+    -DPYTHON_EXECUTABLE=~/devel/bin/python3.3 -DBUILD_YARP2_SUPPORT=ON \
     -DBUILD_POCOLIBS_SUPPORT=ON -DBUILD_ROS_SUPPORT=ON .. && make install)"
 
 # Colorize MORSE :-)
-alias morse="env LD_LIBRARY_PATH=${ROBOTPKG_BASE}/lib morse -c"
+alias morse="env LD_LIBRARY_PATH=${HOME}/devel/lib:${ROBOTPKG_BASE}/lib morse -c"
 
 # Blender from http://download.blender.org/release/Blender2.65/
-export MORSE_BLENDER=$HOME/work/blender-2.65a-linux-glibc211-x86_64/blender
+export MORSE_BLENDER=$HOME/work/blender-2.67b-linux-glibc211-x86_64/blender
 alias blender=$MORSE_BLENDER
 
 export MORSE_RESOURCE_PATH=${HOME}/work/action/morse-action

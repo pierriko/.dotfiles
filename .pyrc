@@ -14,3 +14,6 @@ import atexit
 atexit.register(readline.write_history_file, histfile)
 del os, histfile, readline, rlcompleter
 
+# for gdb completion: copy/paste the following code in gdb:
+# import rlcompleter;import readline;readline.set_completer(rlcompleter.Completer(locals()).complete)
+
