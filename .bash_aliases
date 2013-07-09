@@ -70,9 +70,8 @@ videnc() {
 
 # android debug tool
 alias adb="~/sandbox/android-sdk-linux/platform-tools/adb"
-# boost quick compil
-alias cboost="c++ -I/usr/include/boost"
-
+# clear screen
+alias cls='for i in `seq 200`; do echo; done'
 
 
 # build MORSE and install in ~/devel
@@ -83,6 +82,8 @@ alias cmorse="(cd ~/work/morse/ && rm -rf build && mkdir build && cd build && \
 
 # Colorize MORSE :-)
 alias morse="env LD_LIBRARY_PATH=${HOME}/devel/lib:${ROBOTPKG_BASE}/lib morse -c"
+# bad but for make test to find libpython3.3m.so.1.0
+export LD_LIBRARY_PATH=${HOME}/devel/lib
 
 # Blender from http://download.blender.org/release/Blender2.65/
 export MORSE_BLENDER=$HOME/work/blender-2.67b-linux-glibc211-x86_64/blender
@@ -92,6 +93,11 @@ export MORSE_RESOURCE_PATH=${HOME}/work/action/morse-action
 
 # for FindGDAL.cmake
 export GDAL_ROOT=$HOME/devel
+export BOOST_ROOT=$HOME/devel/include/boost_1_54_0
+# boost quick compil
+alias cboost="c++ -I$BOOST_ROOT"
+# blender build
+alias cblender='PS1="$ "; python scons/scons.py BF_PYTHON_INC=$HOME/devel/include/python3.3m -j8'
 
 # ROS setup
 #source ~/work/ros-addons/setup.bash
@@ -102,7 +108,7 @@ export GDAL_ROOT=$HOME/devel
 ###########################################
 # MORSE rebase current dev branches HOWTO #
 ###########################################
-# list="master feature-fullscreen velodyne-depth feature-socket-vw-pyside"
+# list="master feature-fullscreen feature-socket-vw-pyside feature-kinect2 feature-morsed feature-allpy"
 # for branch in $list; do git checkout $branch; git rebase laas/master; done; git checkout master; git push origin $list -f
 ###########################################
 
