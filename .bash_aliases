@@ -65,6 +65,7 @@ alias pdf2img="convert -density 600 -scale 4000x4000"
 alias camview="vlc v4l2:///dev/video0"
 # video encoding
 videnc() {
+    # use -ss ofset -t duration
     avconv -i $1 -s hd720 -b 5000k -an -c:v libx264 $1.x264.avi
 }
 
@@ -100,7 +101,7 @@ alias morse="env LD_LIBRARY_PATH=${HOME}/devel/lib:${ROBOTPKG_BASE}/lib morse -c
 export LD_LIBRARY_PATH=${HOME}/devel/lib:${HOME}/devel/lib/python3.3
 
 # Blender from http://download.blender.org/release/Blender2.65/
-export MORSE_BLENDER=$HOME/work/blender-2.68a-linux-glibc211-x86_64/blender
+export MORSE_BLENDER=$HOME/work/blender-2.69-linux-glibc211-x86_64/blender
 alias blender=$MORSE_BLENDER
 
 export MORSE_RESOURCE_PATH=${HOME}/work/action/morse-action
@@ -114,6 +115,8 @@ alias cboost="c++ -I$BOOST_ROOT"
 # blender build
 alias cblender='PS1="$ "; python scons/scons.py BF_PYTHON=`python3.3-config --prefix` -j8'
 alias gsdview=~/sandbox/gsdview/run.py
+
+alias wacum="wget --mirror --no-check-certificate --no-parent --no-host-directories --execute robots=off --reject 'index.html*' --timestamping"
 
 # ROS setup
 #source ~/work/ros-addons/setup.bash
