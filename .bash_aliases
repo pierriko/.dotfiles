@@ -5,7 +5,7 @@
 #################################################
 
 #### robotpkg setup
-export ROBOTPKG_BASE=$HOME/openrobots
+export ROBOTPKG_BASE=${HOME}/openrobots
 export PKG_CONFIG_PATH=$HOME/openrobots/lib/pkgconfig:$PKG_CONFIG_PATH
 export PYTHONPATH=$PYTHONPATH:$HOME/openrobots/lib/python2.7/site-packages:$HOME/openrobots/lib/python3.3/site-packages
 export PATH=$PATH:$HOME/openrobots/sbin:$HOME/openrobots/bin
@@ -13,11 +13,14 @@ export PATH=$PATH:$HOME/openrobots/sbin:$HOME/openrobots/bin
 
 
 #### setup devel
-export PKG_CONFIG_PATH=$HOME/devel/lib/pkgconfig:$PKG_CONFIG_PATH
-export PYTHONPATH=$PYTHONPATH:$HOME/devel/lib/python3.3/dist-packages
-export PATH=$HOME/devel/bin:$HOME/devel/usr/bin:$PATH
-#export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/devel/lib
+export DEVEL_BASE=${HOME}/devel
+export PKG_CONFIG_PATH=$DEVEL_BASE/lib/pkgconfig:$PKG_CONFIG_PATH
+export PYTHONPATH=$PYTHONPATH:$DEVEL_BASE/lib/python3.3/dist-packages
+export PATH=$DEVEL_BASE/bin:$DEVEL_BASE/usr/bin:$PATH
+#export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$DEVEL_BASE/lib
 #### end setup devel
+
+export TCLSERV_MODULE_PATH=${DEVEL_BASE}/lib/tclserv:${ROBOTPKG_BASE}/lib/tclserv
 
 # workaround HRI-SIM module "mocap" conflicts with another in Blender
 export PYTHONPATH=$ROBOTPKG_BASE/share/modules/python:$PYTHONPATH
@@ -65,7 +68,7 @@ alias pdf2img="convert -density 600 -scale 4000x4000"
 alias camview="vlc v4l2:///dev/video0"
 # video encoding
 videnc() {
-    # use -ss ofset -t duration
+    # use -ss offset -t duration
     avconv -i $1 -s hd720 -b 5000k -an -c:v libx264 $1.x264.avi
 }
 
@@ -75,22 +78,26 @@ alias adb="~/sandbox/android-sdk-linux/platform-tools/adb"
 alias cls='for i in `seq 200`; do echo; done'
 
 
+# build atlaas
+alias catlaas="(cd ~/work/atlaas && rm -rf build && mkdir build && cd build && \
+    cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=$DEVEL_BASE .. && \
+    make -j8 && make install)"
 # build gladys
 alias cgladys="(cd ~/work/gladys && rm -rf build && mkdir build && cd build && \
-    cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=$HOME/devel .. && \
+    cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=$DEVEL_BASE .. && \
     make -j8 && make test && make install)"
 # build gdalwrap
 alias cgdalwrap="(cd ~/work/gdalwrap && rm -rf build && mkdir build && cd build && \
-    cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=$HOME/devel .. && \
+    cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=$DEVEL_BASE .. && \
     make -j8 && make install)"
 # build clara
 alias cclara="(cd ~/work/clara && rm -rf build && mkdir build && cd build && \
-    cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=$HOME/devel .. && \
+    cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=$DEVEL_BASE .. && \
     make -j8 && make install)"
 
 # build MORSE and install in ~/devel
 alias cmorse="(cd ~/work/morse/ && rm -rf build && mkdir build && cd build && \
-    cmake -DCMAKE_INSTALL_PREFIX=$HOME/devel -DPYMORSE_SUPPORT=ON \
+    cmake -DCMAKE_INSTALL_PREFIX=$DEVEL_BASE -DPYMORSE_SUPPORT=ON \
     -DPYTHON_EXECUTABLE=~/devel/bin/python3.3 -DBUILD_YARP2_SUPPORT=ON \
     -DBUILD_POCOLIBS_STEREOPIXEL_SUPPORT=ON -DBUILD_POCOLIBS_VIAM_SUPPORT=ON \
     -DBUILD_POCOLIBS_SUPPORT=ON -DBUILD_ROS_SUPPORT=ON .. && make install)"
@@ -107,9 +114,9 @@ alias blender=$MORSE_BLENDER
 export MORSE_RESOURCE_PATH=${HOME}/work/action/morse-action
 
 # for FindGDAL.cmake
-export GDAL_ROOT=$HOME/devel
+export GDAL_ROOT=$DEVEL_BASE
 export BOOST_ROOT=/usr/include
-#export BOOST_ROOT=$HOME/devel/include/boost_1_54_0
+#export BOOST_ROOT=$DEVEL_BASE/include/boost_1_54_0
 # boost quick compil
 alias cboost="c++ -I$BOOST_ROOT"
 # blender build
@@ -123,9 +130,9 @@ alias wacum="wget --mirror --no-check-certificate --no-parent --no-host-director
 #source /opt/ros/groovy/setup.bash
 #source /opt/ros/fuerte/setup.bash
 
-#export PYTHONPATH=$PYTHONPATH:$HOME/devel/lib/python2.7/dist-packages
+#export PYTHONPATH=$PYTHONPATH:$DEVEL_BASE/lib/python2.7/dist-packages
 # cd gdal/gdal/swig/python/
-# python setup.py install --install-lib=$HOME/devel/lib/python2.7/dist-packages
+# python setup.py install --install-lib=$DEVEL_BASE/lib/python2.7/dist-packages
 
 ###########################################
 # MORSE rebase current dev branches HOWTO #
