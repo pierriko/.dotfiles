@@ -79,24 +79,24 @@ alias cls='for i in `seq 200`; do echo; done'
 
 
 # build atlaas
-alias catlaas="(cd ~/work/atlaas && rm -rf build && mkdir build && cd build && \
+alias catlaas="(cd ~/work/atlaas && /bin/rm -rf build && mkdir build && cd build && \
     cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=$DEVEL_BASE .. && \
     make -j8 && make install)"
 # build gladys
-alias cgladys="(cd ~/work/gladys && rm -rf build && mkdir build && cd build && \
+alias cgladys="(cd ~/work/gladys && /bin/rm -rf build && mkdir build && cd build && \
     cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=$DEVEL_BASE .. && \
     make -j8 && make test && make install)"
 # build gdalwrap
-alias cgdalwrap="(cd ~/work/gdalwrap && rm -rf build && mkdir build && cd build && \
+alias cgdalwrap="(cd ~/work/gdalwrap && /bin/rm -rf build && mkdir build && cd build && \
     cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=$DEVEL_BASE .. && \
     make -j8 && make install)"
 # build clara
-alias cclara="(cd ~/work/clara && rm -rf build && mkdir build && cd build && \
+alias cclara="(cd ~/work/clara && /bin/rm -rf build && mkdir build && cd build && \
     cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=$DEVEL_BASE .. && \
     make -j8 && make install)"
 
 # build MORSE and install in ~/devel
-alias cmorse="(cd ~/work/morse/ && rm -rf build && mkdir build && cd build && \
+alias cmorse="(cd ~/work/morse/ && /bin/rm -rf build && mkdir build && cd build && \
     cmake -DCMAKE_INSTALL_PREFIX=$DEVEL_BASE -DPYMORSE_SUPPORT=ON \
     -DPYTHON_EXECUTABLE=~/devel/bin/python3.3 -DBUILD_YARP2_SUPPORT=ON \
     -DBUILD_POCOLIBS_STEREOPIXEL_SUPPORT=ON -DBUILD_POCOLIBS_VIAM_SUPPORT=ON \
@@ -140,4 +140,13 @@ alias wacum="wget --mirror --no-check-certificate --no-parent --no-host-director
 # list="master feature-socket-vw-pyside feature-kinect2 feature-allpy"
 # for branch in $list; do git checkout $branch; git rebase laas/master; done; git checkout master; git push origin $list -f
 ###########################################
+
+alias rm="mv -t ~/.nofutur"
+
+# Run tmux if SSH
+[[ -z "$TMUX" && -n "$SSH_CONNECTION" ]] && which tmux >& /dev/null && tmux
+
+# rsync morse doc from `morse/build` after `make doc`
+# rsync -r doc/html/* trac:/var/www/html/openrobots/morse/doc/latest
+
 
