@@ -148,5 +148,6 @@ alias rm="mv -t ~/.nofutur"
 
 # rsync morse doc from `morse/build` after `make doc`
 # rsync -r doc/html/* trac:/var/www/html/openrobots/morse/doc/latest
+export HYPER_ROOT=${ROBOTPKG_BASE}
 
 
