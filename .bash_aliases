@@ -7,6 +7,7 @@
 # enable core dump (check for apport pipe!)
 # cat /proc/sys/kernel/core_pattern
 ulimit -S -c unlimited
+alias ulimit='ulimit -S'
 
 #### robotpkg setup
 export ROBOTPKG_BASE=${HOME}/openrobots
