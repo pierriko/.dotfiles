@@ -4,6 +4,10 @@
 #
 #################################################
 
+# enable core dump (check for apport pipe!)
+# cat /proc/sys/kernel/core_pattern
+ulimit -S -c unlimited
+
 #### robotpkg setup
 export ROBOTPKG_BASE=${HOME}/openrobots
 export PKG_CONFIG_PATH=$HOME/openrobots/lib/pkgconfig:$PKG_CONFIG_PATH
