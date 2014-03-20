@@ -146,7 +146,7 @@ alias wacum="wget --mirror --no-check-certificate --no-parent --no-host-director
 # for branch in $list; do git checkout $branch; git rebase laas/master; done; git checkout master; git push origin $list -f
 ###########################################
 
-alias rm="mv -b -S .$(date +%s) -t ~/.nofutur"
+alias rm="mv -b -S .\$(date +%s) -t ~/.nofutur"
 
 # Run tmux if SSH
 [[ -z "$TMUX" && -n "$SSH_CONNECTION" ]] && which tmux >& /dev/null && tmux
