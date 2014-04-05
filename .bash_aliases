@@ -121,10 +121,7 @@ export MORSE_RESOURCE_PATH=${HOME}/work/action/morse-action
 
 # for FindGDAL.cmake
 export GDAL_ROOT=$DEVEL_BASE
-#export BOOST_ROOT=/usr/include
-#export BOOST_ROOT=$DEVEL_BASE/include/boost_1_54_0
-# boost quick compil
-#alias cboost="c++ -I$BOOST_ROOT"
+export BOOST_ROOT=${ROBOTPKG_BASE}
 # blender build
 alias cblender='PS1="$ "; python scons/scons.py BF_PYTHON=`python3.3-config --prefix` -j8'
 alias gsdview=~/sandbox/gsdview/run.py
