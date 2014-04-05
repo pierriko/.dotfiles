@@ -151,9 +151,15 @@ alias rm="mv -b -S .\$(date +%s) -t ~/.nofutur"
 
 # rsync morse doc from `morse/build` after `make doc`
 # rsync -r doc/html/* trac:/var/www/html/openrobots/morse/doc/latest
-export HYPER_ROOT=${ROBOTPKG_BASE}
+
+##
+# golang stuff
 export GOPATH=${HOME}/sandbox/gotmp
 export GOROOT=${HOME}/devel/go
 export PATH=${PATH}:${GOROOT}/bin
 
+##
+# hyper stuff
+export HYPER_ROOT=${ROBOTPKG_BASE}
+export HYPER_ROOT_ADDR="127.0.0.1:4242"
 
