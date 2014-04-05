@@ -10,10 +10,11 @@ ulimit -S -c unlimited
 alias ulimit='ulimit -S'
 
 #### robotpkg setup
-export ROBOTPKG_BASE=${HOME}/openrobots
-export PKG_CONFIG_PATH=$HOME/openrobots/lib/pkgconfig:$PKG_CONFIG_PATH
-export PYTHONPATH=$PYTHONPATH:$HOME/openrobots/lib/python2.7/site-packages:$HOME/openrobots/lib/python3.3/site-packages
-export PATH=$PATH:$HOME/openrobots/sbin:$HOME/openrobots/bin
+export ROBOTPKG_ARCH="$(uname -m)_$(uname -s)_$(uname -r)"
+export ROBOTPKG_BASE=${HOME}/openrobots/${ROBOTPKG_ARCH}
+export PKG_CONFIG_PATH=${ROBOTPKG_BASE}/lib/pkgconfig:$PKG_CONFIG_PATH
+export PYTHONPATH=$PYTHONPATH:${ROBOTPKG_BASE}/lib/python2.7/site-packages:${ROBOTPKG_BASE}/lib/python3.3/site-packages
+export PATH=$PATH:${ROBOTPKG_BASE}/sbin:${ROBOTPKG_BASE}/bin
 #### end robotpkg setup
 
 
@@ -120,10 +121,10 @@ export MORSE_RESOURCE_PATH=${HOME}/work/action/morse-action
 
 # for FindGDAL.cmake
 export GDAL_ROOT=$DEVEL_BASE
-export BOOST_ROOT=/usr/include
+#export BOOST_ROOT=/usr/include
 #export BOOST_ROOT=$DEVEL_BASE/include/boost_1_54_0
 # boost quick compil
-alias cboost="c++ -I$BOOST_ROOT"
+#alias cboost="c++ -I$BOOST_ROOT"
 # blender build
 alias cblender='PS1="$ "; python scons/scons.py BF_PYTHON=`python3.3-config --prefix` -j8'
 alias gsdview=~/sandbox/gsdview/run.py
