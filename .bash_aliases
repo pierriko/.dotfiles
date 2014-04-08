@@ -163,3 +163,9 @@ export PATH=${PATH}:${GOROOT}/bin
 export HYPER_ROOT=${ROBOTPKG_BASE}
 export HYPER_ROOT_ADDR="127.0.0.1:4242"
 
+##
+# orocos-ocl rttlua-gnulinux
+export LUA_PATH="?;?.lua;$ROBOTPKG_BASE/lib/lua/rfsm/?.lua;$ROBOTPKG_BASE/share/lua/5.1/?.lua;/usr/share/lua/5.1/?.lua;/usr/lib/lua/5.1/?.lua"
+
+
+
