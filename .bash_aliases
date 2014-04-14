@@ -104,7 +104,7 @@ alias cclara="(cd ~/work/clara && /bin/rm -rf build && mkdir build && cd build &
 # build MORSE and install in ~/devel
 alias cmorse="(cd ~/work/morse/ && /bin/rm -rf build && mkdir build && cd build && \
     cmake -DCMAKE_INSTALL_PREFIX=$DEVEL_BASE -DPYMORSE_SUPPORT=ON \
-    -DPYTHON_EXECUTABLE=~/devel/bin/python3.3 -DBUILD_YARP2_SUPPORT=ON \
+    -DPYTHON_EXECUTABLE=${ROBOTPKG_BASE}/bin/python3.3 -DBUILD_YARP2_SUPPORT=ON \
     -DBUILD_POCOLIBS_STEREOPIXEL_SUPPORT=ON -DBUILD_POCOLIBS_VIAM_SUPPORT=ON \
     -DBUILD_POCOLIBS_SUPPORT=ON -DBUILD_ROS_SUPPORT=ON .. && make install)"
 
