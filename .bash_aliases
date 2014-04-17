@@ -168,5 +168,11 @@ export HYPER_ROOT_ADDR="127.0.0.1:4242"
 # orocos-ocl rttlua-gnulinux
 export LUA_PATH="?;?.lua;$ROBOTPKG_BASE/lib/lua/rfsm/?.lua;$ROBOTPKG_BASE/share/lua/5.1/?.lua;/usr/share/lua/5.1/?.lua;/usr/lib/lua/5.1/?.lua"
 
+## Set Touchpad sensitivity
+# https://wiki.archlinux.org/index.php/Touchpad_Synaptics
+# https://help.ubuntu.com/community/SynapticsTouchpad
+# http://www.x.org/archive/X11R7.5/doc/man/man4/synaptics.4.html
+# 3 values, low, high, press.
+# xinput --set-prop 13 "Synaptics Finger" 20 30 100
 
 
