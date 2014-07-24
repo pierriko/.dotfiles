@@ -10,7 +10,8 @@ ulimit -S -c unlimited
 alias ulimit='ulimit -S'
 
 #### robotpkg setup
-export ROBOTPKG_ARCH="$(uname -m)_$(uname -s)_$(uname -r)"
+#export ROBOTPKG_ARCH="$(uname -m)_$(uname -s)_$(uname -r)"
+export ROBOTPKG_ARCH="x86_64_Linux_3.13.0-24-generic"
 export ROBOTPKG_BASE=${HOME}/openrobots/${ROBOTPKG_ARCH}
 export PKG_CONFIG_PATH=${ROBOTPKG_BASE}/lib/pkgconfig:$PKG_CONFIG_PATH
 export PYTHONPATH=$PYTHONPATH:${ROBOTPKG_BASE}/lib/python2.7/site-packages:${ROBOTPKG_BASE}/lib/python3.3/site-packages
@@ -61,7 +62,10 @@ alias clipboard='xclip -sel clip'
 # well...
 alias steam="~/media/Steam/steam.sh"
 # <3 ViM but still sometimes... Sublime Text 2
-alias sublime=~/sandbox/sublimetext2/sublime_text
+_sublime() {
+    nohup ~/sandbox/sublimetext2/sublime_text $@ &> /dev/null &
+}
+alias sublime=_sublime
 # edit this file
 alias vialiases="vim ~/.bash_aliases"
 # mostly useless
@@ -104,7 +108,7 @@ alias cclara="(cd ~/work/clara && /bin/rm -rf build && mkdir build && cd build &
 # build MORSE and install in ~/devel
 alias cmorse="(cd ~/work/morse/ && /bin/rm -rf build && mkdir build && cd build && \
     cmake -DCMAKE_INSTALL_PREFIX=$DEVEL_BASE -DPYMORSE_SUPPORT=ON \
-    -DPYTHON_EXECUTABLE=${ROBOTPKG_BASE}/bin/python3.3 -DBUILD_YARP2_SUPPORT=ON \
+    -DPYTHON_EXECUTABLE=`which python3.4` -DBUILD_YARP2_SUPPORT=ON \
     -DBUILD_POCOLIBS_STEREOPIXEL_SUPPORT=ON -DBUILD_POCOLIBS_VIAM_SUPPORT=ON \
     -DBUILD_POCOLIBS_VELODYNE_SUPPORT=ON \
     -DBUILD_POCOLIBS_SUPPORT=ON -DBUILD_ROS_SUPPORT=ON .. && make install)"
