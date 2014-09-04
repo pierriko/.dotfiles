@@ -10,9 +10,7 @@ ulimit -S -c unlimited
 alias ulimit='ulimit -S'
 
 #### robotpkg setup
-#export ROBOTPKG_ARCH="$(uname -m)_$(uname -s)_$(uname -r)"
-export ROBOTPKG_ARCH="x86_64_Linux_3.13.0-24-generic"
-export ROBOTPKG_BASE=${HOME}/openrobots/${ROBOTPKG_ARCH}
+export ROBOTPKG_BASE=${HOME}/openrobots
 export PKG_CONFIG_PATH=${ROBOTPKG_BASE}/lib/pkgconfig:$PKG_CONFIG_PATH
 export PYTHONPATH=$PYTHONPATH:${ROBOTPKG_BASE}/lib/python2.7/site-packages:${ROBOTPKG_BASE}/lib/python3.3/site-packages
 export PATH=$PATH:${ROBOTPKG_BASE}/sbin:${ROBOTPKG_BASE}/bin
@@ -104,6 +102,10 @@ alias cgdalwrap="(cd ~/work/gdalwrap && /bin/rm -rf build && mkdir build && cd b
 alias cclara="(cd ~/work/clara && /bin/rm -rf build && mkdir build && cd build && \
     cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=$DEVEL_BASE .. && \
     make -j8 && make install)"
+
+alias atlaas_merge="gdal_merge.py -co \"COMPRESS=DEFLATE\" atlaas.*x*.tif && \
+    gdaldem hillshade -b 4 out.tif -of PNG out.hillshade.png && \
+    open out.hillshade.png"
 
 # build MORSE and install in ~/devel
 alias cmorse="(cd ~/work/morse/ && /bin/rm -rf build && mkdir build && cd build && \
