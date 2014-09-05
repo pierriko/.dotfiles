@@ -12,7 +12,7 @@ alias ulimit='ulimit -S'
 #### robotpkg setup
 export ROBOTPKG_BASE=${HOME}/openrobots
 export PKG_CONFIG_PATH=${ROBOTPKG_BASE}/lib/pkgconfig:$PKG_CONFIG_PATH
-export PYTHONPATH=$PYTHONPATH:${ROBOTPKG_BASE}/lib/python2.7/site-packages:${ROBOTPKG_BASE}/lib/python3.3/site-packages
+export PYTHONPATH=$PYTHONPATH:${ROBOTPKG_BASE}/lib/python3.4/site-packages:${ROBOTPKG_BASE}/lib/python2.7/site-packages:${ROBOTPKG_BASE}/lib/python3.3/site-packages
 export PATH=$PATH:${ROBOTPKG_BASE}/sbin:${ROBOTPKG_BASE}/bin
 #### end robotpkg setup
 
@@ -120,8 +120,8 @@ alias morse="env LD_LIBRARY_PATH=${HOME}/devel/lib:${ROBOTPKG_BASE}/lib morse -c
 # bad but for make test to find libpython3.3m.so.1.0
 export LD_LIBRARY_PATH=${HOME}/devel/lib:${HOME}/devel/lib/python3.3
 
-# Blender from http://download.blender.org/release/Blender2.65/
-export MORSE_BLENDER=${ROBOTPKG_BASE}/bin/blender
+# Blender from http://download.blender.org/release
+export MORSE_BLENDER=${DEVEL_BASE}/bin/blender
 alias blender=$MORSE_BLENDER
 
 export MORSE_RESOURCE_PATH=${HOME}/work/action/morse-action
