@@ -20,7 +20,7 @@ export PATH=$PATH:${ROBOTPKG_BASE}/sbin:${ROBOTPKG_BASE}/bin
 #### setup devel
 export DEVEL_BASE=${HOME}/devel
 export PKG_CONFIG_PATH=$DEVEL_BASE/lib/pkgconfig:$PKG_CONFIG_PATH
-export PYTHONPATH=$PYTHONPATH:$DEVEL_BASE/lib/python3.3/dist-packages
+export PYTHONPATH=$PYTHONPATH:$DEVEL_BASE/lib/python3/dist-packages
 export PATH=$DEVEL_BASE/bin:$DEVEL_BASE/usr/bin:$PATH
 #export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$DEVEL_BASE/lib
 #### end setup devel
@@ -40,7 +40,7 @@ _BOLD_OFF=`tput sgr0`
 __last_err() {
     [[ "$?" != "0" ]] && echo -ne "\e[1;31m!\e[0m"
 }
-export PS1="╭─\u@\h[\$(date +%T)]:\w \$(__last_err)\${_BOLD_ON}\$(__git_ps1)\${_BOLD_OFF}\n╰─➤ "
+export PS1="╭─\u@\h:\w [\$(date +%T)]\${_BOLD_ON}\$(__git_ps1) \$(__last_err)\${_BOLD_OFF}\n╰─➤ "
 
 
 # history search
