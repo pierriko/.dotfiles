@@ -38,9 +38,9 @@ export PYTHONSTARTUP=~/.pyrc
 _BOLD_ON=`tput bold`
 _BOLD_OFF=`tput sgr0`
 __last_err() {
-    [[ "$?" != "0" ]] && echo -ne "\e[1;31m!\e[0m"
+    [[ "$?" != "0" ]] && echo -ne "\e[1;31m!\e[0m "
 }
-export PS1="╭─\u@\h:\w \$(__last_err) [\$(date +%T)]\${_BOLD_ON}\$(__git_ps1)\${_BOLD_OFF}\n╰─➤ "
+export PS1="╭─\u@\h:\w \$(__last_err)[\$(date +%T)]\${_BOLD_ON}\$(__git_ps1)\${_BOLD_OFF}\n╰─➤ "
 
 
 # history search
