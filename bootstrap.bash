@@ -38,7 +38,7 @@ wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
 sudo apt-get update
 sudo apt-get install \
     ros-hydro-ros-comm python-rosinstall \
-    git-svn git-cvs python3-dev python3-yaml libpcap-dev libxp-dev \
+    git-svn git-cvs python3-dev python3-yaml libpcap-dev libxp-dev tcl8.5-dev \
     pax texinfo bwidget libgsl0-dev glpk libgts-dev libftdi-dev libeigen2-dev \
     gnome-panel curl libc6 xclip traceroute flex bison rubber \
     nmap recordmydesktop vlc inkscape gimp nautilus-open-terminal \
