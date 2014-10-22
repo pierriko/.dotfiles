@@ -44,7 +44,8 @@ sudo apt-get install \
     nmap recordmydesktop vlc inkscape gimp nautilus-open-terminal \
     ruby-dev vim-nox python-fontforge libflann-dev cmake-curses-gui \
     libncurses5-dev libncurses5:i386 libstdc++6:i386 zlib1g:i386 \
-    python3-numpy python-numpy bzr mercurial python-lxml xd python3-setuptools
+    python3-numpy python-numpy python-matplotlib ipython-notebook bzr \
+    mercurial python-lxml xd python3-setuptools
 
 sudo rosdep init
 rosdep update
