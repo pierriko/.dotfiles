@@ -152,6 +152,7 @@ alias wacum="wget --mirror --no-check-certificate --no-parent --no-host-director
 ###########################################
 
 alias rm="mv -b -S .\$(date +%s) -t ~/.nofutur"
+alias update="sudo apt-get update ; sudo apt-get -y upgrade ; update-manager & alert"
 
 # Run tmux if SSH
 [[ -z "$TMUX" && -n "$SSH_CONNECTION" ]] && which tmux >& /dev/null && tmux
@@ -180,5 +181,3 @@ export LUA_PATH="?;?.lua;$ROBOTPKG_BASE/lib/lua/rfsm/?.lua;$ROBOTPKG_BASE/share/
 # http://www.x.org/archive/X11R7.5/doc/man/man4/synaptics.4.html
 # 3 values, low, high, press.
 # xinput --set-prop 13 "Synaptics Finger" 20 30 100
-
-
