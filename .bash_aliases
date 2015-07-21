@@ -16,6 +16,8 @@ export PYTHONPATH=$PYTHONPATH:${ROBOTPKG_BASE}/lib/python3.4/site-packages:${ROB
 export PATH=$PATH:${ROBOTPKG_BASE}/sbin:${ROBOTPKG_BASE}/bin
 #### end robotpkg setup
 
+export ACTION_HOME=${HOME}/work/action
+alias source_ros_action='source ${ACTION_HOME}/action_ros_ws/devel/setup.bash'
 
 #### setup devel
 export DEVEL_BASE=${HOME}/devel
@@ -181,3 +183,12 @@ export LUA_PATH="?;?.lua;$ROBOTPKG_BASE/lib/lua/rfsm/?.lua;$ROBOTPKG_BASE/share/
 # http://www.x.org/archive/X11R7.5/doc/man/man4/synaptics.4.html
 # 3 values, low, high, press.
 # xinput --set-prop 13 "Synaptics Finger" 20 30 100
+
+
+# usage json_ppp < in.json > out.json
+alias json_ppp="python -c'import sys,json;json.dump(json.load(sys.stdin),sys.stdout,indent=1)'"
+
+# action genom picoweb morse
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${ROBOTPKG_BASE}/lib
+
+
