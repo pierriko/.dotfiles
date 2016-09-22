@@ -111,11 +111,11 @@ alias atlaas_merge="gdal_merge.py -co \"COMPRESS=DEFLATE\" atlaas.*x*.tif && \
 
 # build MORSE and install in ~/devel
 alias cmorse="(cd ~/work/morse/ && /bin/rm -rf build && mkdir build && cd build && \
-    cmake -DCMAKE_INSTALL_PREFIX=$DEVEL_BASE -DPYMORSE_SUPPORT=ON \
-    -DPYTHON_EXECUTABLE=`which python3.4` -DBUILD_YARP2_SUPPORT=ON \
-    -DBUILD_POCOLIBS_STEREOPIXEL_SUPPORT=ON -DBUILD_POCOLIBS_VIAM_SUPPORT=ON \
-    -DBUILD_POCOLIBS_VELODYNE_SUPPORT=ON \
-    -DBUILD_POCOLIBS_SUPPORT=ON -DBUILD_ROS_SUPPORT=ON .. && make install)"
+    cmake -DCMAKE_INSTALL_PREFIX=$DEVEL_BASE \
+    -DPYTHON_EXECUTABLE=`which python3.5` .. && make install)"
+
+#-DBUILD_POCOLIBS_STEREOPIXEL_SUPPORT=ON -DBUILD_POCOLIBS_VIAM_SUPPORT=ON \
+#-DBUILD_POCOLIBS_VELODYNE_SUPPORT=ON -DBUILD_POCOLIBS_SUPPORT=ON \
 
 # Colorize MORSE :-)
 alias morse="env LD_LIBRARY_PATH=${HOME}/devel/lib:${ROBOTPKG_BASE}/lib morse -c"
@@ -191,4 +191,16 @@ alias json_ppp="python -c'import sys,json;json.dump(json.load(sys.stdin),sys.std
 # action genom picoweb morse
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${ROBOTPKG_BASE}/lib
 
+# morse: dont crash for python version missmatch
+export MORSE_SILENT_PYTHON_CHECK=1
+export MORSE_POP_PYTHONLIB="/usr/lib/python3.5"
+
+alias run_jupyter="cd ~/Desktop/datasets/jupyter/virtualenv-15.0.3/pyvenv; \
+    source bin/activate; cd data; xdg-open https://champa.laas.fr:8888; \
+    jupyter notebook --certfile=mycert.pem --no-browser --ip='*'"
+
+#
+
+# http://lists.science.uu.nl/pipermail/ipe-discuss/2014-November/001611.html
+export LC_NUMERIC=C
 
