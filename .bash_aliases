@@ -106,7 +106,7 @@ alias atlaas_merge="gdal_merge.py -co \"COMPRESS=DEFLATE\" atlaas.*x*.tif && \
 alias cmorse="(cd ~/work/morse/ && /bin/rm -rf build && \
     mkdir build && cd build && \
     cmake -DCMAKE_INSTALL_PREFIX=${DEVEL_BASE} \
-    -DPYTHON_EXECUTABLE=`which python3.5` .. && make install)"
+    -DPYTHON_EXECUTABLE=\$(which python3) .. && make install)"
 
 # Colorize MORSE :-)
 alias morse="env LD_LIBRARY_PATH=${HOME}/devel/lib:${ROBOTPKG_BASE}/lib morse -c"
