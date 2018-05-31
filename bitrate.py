@@ -24,18 +24,18 @@ class Bitrate:
 
     def human(self):
         self.log()
-        bps  = self.get()
+        rate = self.get()
         unit = ' '
         for kmg in ['K', 'M', 'G']:
-            if bps > 1024:
-                bps /= 1024.0
+            if rate > 1024:
+                rate /= 1024.0
                 unit = kmg
             else:
                 break
-        return bps, unit
+        return rate, unit
 
     def run(self):
-        return "%9.3f %1sbps" % self.human()
+        return "%9.3f %1sBps" % self.human()
 
 def main(ifaces):
     brs = {iface: Bitrate(iface) for iface in ifaces}
